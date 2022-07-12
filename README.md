@@ -8,4 +8,4 @@ Snake_Game_AI
 - tensorflow
 
 >## How to use
-### Run ```bash python evolution.py``` on terminal
+- Run ``` python evolution.py``` on terminal
