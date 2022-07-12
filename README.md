@@ -1,1 +1,1 @@
-# Snack_Game_AI
+# Snake_Game_AI
