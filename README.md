@@ -1,11 +1,11 @@
 Snake_Game_AI
 =============
 
->##Requirment
+>## Requirment
 - Python
 - numpy
 - pygame
 - tensorflow
 
->##How to use
-###Run ```python evolution.py``` on terminal
+>## How to use
+### Run ```bash python evolution.py``` on terminal
