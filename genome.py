@@ -4,6 +4,7 @@ import tensorflow as tf
 class Genome():
   def __init__(self):
     self.fitness = 0
+    self.score = 0
 
     hidden_layer = 10
     self.w1 = np.random.randn(6, hidden_layer)

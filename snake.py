@@ -50,7 +50,7 @@ class Snake():
     new_head = old_head + movement
 
     if new_head.tolist() in self.snake.tolist():
-      self.fitness-=5
+      self.fitness-=4
       return False
     
     if (
@@ -59,14 +59,14 @@ class Snake():
         new_head[1] < 0 or
         new_head[1] >= SCREEN_SIZE
       ):
-      # self.fitness -= FPS/2
+      self.fitness -= 1.5
       return False
     
     # eat fruit
     if all(new_head == self.fruit):
       self.last_fruit_time = self.timer
       self.score += 1
-      self.fitness += 10
+      self.fitness += 15
       self.place_fruit()
     else:
       tail = self.snake[-1]
@@ -132,7 +132,7 @@ class Snake():
     while True:
       self.timer += 0.1
       if self.fitness < -FPS/2 or self.timer - self.last_fruit_time > 0.1 * FPS * 5:
-        # self.fitness -= FPS/2
+        self.fitness -= 4.5
         print('Terminate!')
         break
 
@@ -177,7 +177,7 @@ class Snake():
       if self.last_dist > current_dist:
         self.fitness += 1
       else:
-        self.fitness -= 1.5
+        self.fitness -= 2
       self.last_dist = current_dist
 
       self.s.fill((0, 0, 0))

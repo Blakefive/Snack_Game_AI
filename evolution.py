@@ -4,10 +4,10 @@ from copy import deepcopy
 from snake import Snake, SCREEN_SIZE, PIXEL_SIZE
 from genome import Genome
 
-N_POPULATION = 50
-N_BEST = 5
+N_POPULATION = 60
+N_BEST = 3
 N_CHILDREN = 5
-PROB_MUTATION = 0.4
+PROB_MUTATION = 0.3
 
 pygame.init()
 pygame.font.init()
@@ -21,21 +21,22 @@ best_genomes = None
 n_gen = 0
 while True:
   n_gen += 1
+  if n_gen > 15:
+    N_POPULATION = 40
+    N_BEST = 5
 
   for i, genome in enumerate(genomes):
     snake = Snake(s, genome=genome)
     fitness, score = snake.run()
 
     genome.fitness = fitness
-
-    # print('Generation #%s, Genome #%s, Fitness: %s, Score: %s' % (n_gen, i, fitness, score))
+    genome.score = score
 
   if best_genomes is not None:
     genomes.extend(best_genomes)
   genomes.sort(key=lambda x: x.fitness, reverse=True)
 
-  print('===== Generaton #%s\tBest Fitness %s =====' % (n_gen, genomes[0].fitness))
-  # print(genomes[0].w1, genomes[0].w2)
+  print('===== Generaton #%s  Best Fitness %s Best Score %s =====' % (n_gen, genomes[0].fitness, genomes[0].score))
 
   best_genomes = deepcopy(genomes[:N_BEST])
 
@@ -60,7 +61,6 @@ while True:
     cut = random.randint(0, new_genome.w4.shape[1])
     new_genome.w4[i, :cut] = a_genome.w4[i, :cut]
     new_genome.w4[i, cut:] = b_genome.w4[i, cut:]
-    
 
     cut = random.randint(0, new_genome.b1.shape[0])
     new_genome.b1[:cut] = a_genome.b1[:cut]
